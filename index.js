@@ -15,20 +15,18 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     cors: {
-        origin:         '*',
-        exposedHeaders: 'Authorization',
-        allowedHeaders: 'Authorization',
-        credentials:    true,
+        origin: 'https://crmc-lient.vercel.app',
+        credentials: true
     },
     context: ({req}) => {
         const token = req.headers['authorization'] || '';
         if(token) {
             try {
-                const usuario = jwt.verify(token.replace('Bearer ', ''), process.env.SECRETA );
+               const usuario = jwt.verify(token.replace('Bearer ', ''), process.env.SECRETA );
 
-                return {
-                    usuario
-                }
+               return {
+                   usuario
+               }
             } catch (e) {
                 console.log('Hubo un error');
             }
