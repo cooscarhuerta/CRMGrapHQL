@@ -3,6 +3,7 @@ const typeDefs = require('./db/schema');
 const resolvers = require('./db/resolvers')
 const jwt = require('jsonwebtoken');
 require('dotenv').config({path: 'variables.env'});
+const cors = require('cors');
 
 const conectarDB = require('./config/db');
 
@@ -29,7 +30,7 @@ const server = new ApolloServer({
         }
     }
 });
-
+server.use(cors({credentials: true, origin: 'https://crmc-lient.vercel.app'}));
 server.listen({port: process.env.PORT || 4000}).then( ({url}) => {
     console.log(`Servidor listo en la URL ${url}`)
 } )
