@@ -15,7 +15,7 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     cors: {
-        origin: '*',
+        origin: 'https://crmc-lient.vercel.app/login',
         credentials: true
     },
     context: ({req}) => {
