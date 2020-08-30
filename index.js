@@ -14,10 +14,6 @@ conectarDB();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    cors: {
-        origin: '*',
-        credentials: true
-    },
     context: ({req}) => {
         const token = req.headers['authorization'] || '';
         if(token) {
